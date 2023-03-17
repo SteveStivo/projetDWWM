@@ -1,0 +1,148 @@
+@import 'colorsProperties';
+
+// ----- FONTS PROPERTIES -----
+    // --- FAMILY ---
+    @font-face {
+        font-family: gaoel;
+        src: url(fonts/GAOEL.ttf);
+    }
+    $primary-font-family: 'Lato', sans-serif;
+    $secondary-font-family: 'Audiowide', cursive;
+    $main-title-font-family: 'GAOEL';
+
+  // --- SIZE ---
+  html{
+    font-size: 16px;
+  }
+    $primary-font-size-LARGE: calc(0.35rem + 0.8vw);
+    $secondary-font-size-MEDIUM: 14px;
+    $title-default-font-size:20px;
+    $title-secondary-font-size:32px;
+    $title-mobil-font-size:48px;
+    $title-desktop-font-size:58px;
+
+    // --- WEIGHT ---
+    $primary-font-weight-BOLD: bold;
+    $secondary-font-weight-REGULAR: regular;
+
+//----------------------------------------------
+
+// ******* MIXINS FONTS *******
+@mixin primary-font-properties-LARGE (
+    $family: $primary-font-family,
+    $size: $primary-font-size-LARGE,
+    $weight: $primary-font-weight-BOLD,
+    $color: $default-color-LIGHT,  
+    ){
+    font: $size $weight;
+    font-family: $family;
+    color: $color;
+    };
+    
+@mixin primary-font-properties-MEDIUM (
+    $family: $primary-font-family,
+    $size: $secondary-font-size-MEDIUM,
+    $weight: $secondary-font-weight-REGULAR,
+    $color: $default-color-LIGHT,  
+    ){
+    font: $size $weight;
+    font-family: $family;
+    color: $color;
+    };
+    
+@mixin default-title-properties (
+    $family: $secondary-font-family,
+    $size: $title-default-font-size,
+    $weight: $secondary-font-weight-REGULAR,
+    $color: $default-color-LIGHT,  
+    ){
+    font: $size $weight;
+    font-family: $family;
+    color: $color;
+    };
+    
+@mixin primary-title-properties (
+    $family: $primary-font-family,
+    $size: $title-default-font-size,
+    $weight: $secondary-font-weight-REGULAR,
+    $color: $default-color-LIGHT,  
+    ){
+    font: $size $weight;
+    font-family: $family;
+    color: $color;
+    };
+
+@mixin mobil-header-properties (
+    $family: $main-title-font-family,
+    $size: $title-mobil-font-size,
+    $weight: $secondary-font-weight-REGULAR,
+    $color: $default-color-LIGHT,  
+    ){
+    font: $size $weight;
+    font-family: $family;
+    color: $color;
+    };
+
+@mixin desktop-header-properties (
+    $family: $main-title-font-family,
+    $size: $title-desktop-font-size,
+    $weight: $secondary-font-weight-REGULAR,
+    $color: $default-color-LIGHT,  
+    ){
+    font: $size $weight;
+    font-family: $family;
+    color: $color;
+    };
+    
+//----------------------------------------------
+
+// ******* EXTENDS PLACEHOLDER PROPERTIES *******
+// >>>>>> Lien balises A dans Header HORS Dropdown <<<<<<<<
+%links-properties{
+    &:link{
+        text-decoration: none;
+    }
+    &:visited{
+        display: none;
+    }
+    &:hover{
+        color: $primary-color-BRIGHT;
+    }
+    &:active{
+        color: $secondary-content-color-DARK;
+    }
+}
+// >>>>>> Lien balises A dans Header DANS Dropdown <<<<<<<<
+%box-links-properties{
+    &:link{
+        text-decoration: none;
+    }
+    &:visited{
+        display: none;
+    }
+    &:hover{
+        color: $default-color-LIGHT;
+    }
+    &:active{
+        color: $secondary-content-color-DARK;
+    }
+}
+// >>>>>> Content balises LI dans Dropdown <<<<<<<<
+%box-properties{
+    color: $default-color-LIGHT;
+    &:link{
+        text-decoration: none;
+    }
+    &:visited{
+        display: none;
+    }
+    &:hover{
+        background: $primary-color-BRIGHT;
+        transition: background 1s cubic-bezier(0, 0.9, 0.44, 0.98);
+        //transition-delay: 2s;
+        //transition-property: background;
+    }
+    &:active{
+        color: $secondary-content-color-DARK;
+    }
+}
