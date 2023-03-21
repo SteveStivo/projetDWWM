@@ -11,13 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('artists', function (Blueprint $table) {
+        Schema::create('music', function (Blueprint $table) {
             $table->id();
-            $table->string('artist_name');
-            $table->string('artist_img');
-            $table->text('artist_description');
-            $table->string('artist_video_link');
+            $table->string('music_title');
+            $table->string('music_label');
+            $table->string('music_img');
+            $table->date('music_date_release');
             $table->timestamps();
+
+            $table->foreignId('user_id')->constrained('users');
         });
     }
 
@@ -26,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('artists');
+        Schema::dropIfExists('music');
     }
 };

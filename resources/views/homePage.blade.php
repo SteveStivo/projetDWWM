@@ -60,9 +60,9 @@
                 <div class="login-content">
                     @auth
                     <a href="{{ url('/dashboard') }}" class="dashboard-button header-connect-button">Tableau de Bord</a>
+                    
                     @else
                         <a href="{{ route('login') }}" class="login-button header-connect-button">{{ __('Log in') }}</a>
-
 
                         @if (Route::has('register'))
                         <a href="{{ route('register') }}" class="register-button header-connect-button">{{ __('Register') }}</a>

@@ -24,6 +24,8 @@ return new class extends Migration
             $table->string('event_map');
             $table->string('event_video_link');
             $table->timestamps();
+
+            $table->foreignId('user_id')->constrained('users');
         });
     }
 
