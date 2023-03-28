@@ -1,5 +1,5 @@
 <!-- ******************************************************
-*********** NAVIGATION dans le contexte LOGIN OK **********
+*********** NAVIGATION dans le contexte Dashboard LOGIN OK **********
 ******************************************************* -->
 <nav x-data="{ open: false }" class="bg-white dark:bg-gray-800 border-b border-gray-100 dark:border-gray-700">
     <!-- Primary Navigation Menu -->
@@ -18,7 +18,7 @@
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('posts.index')" :active="request()->routeIs('posts.edit')">
+                    <x-nav-link :href="route('posts_list.index')" :active="request()->routeIs('posts.edit')">
                         {{ __('Posts') }}
                     </x-nav-link>
                 </div>

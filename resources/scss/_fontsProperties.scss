@@ -14,20 +14,24 @@
   html{
     font-size: 16px;
   }
-    $primary-font-size-LARGE: calc(0.35rem + 0.8vw);
-    $secondary-font-size-MEDIUM: 14px;
-    $title-default-font-size:20px;
+    $primary-font-size-LARGE: calc(0.35rem + 0.85vw);
+    $secondary-font-size-MEDIUM:  calc(0.35rem + 0.6vw);
+    $title-default-font-size:calc(0.35rem + 1vw);
     $title-secondary-font-size:32px;
     $title-mobil-font-size:48px;
-    $title-desktop-font-size:58px;
+    $title-desktop-font-size: calc(1rem + 2vw);
 
     // --- WEIGHT ---
     $primary-font-weight-BOLD: bold;
     $secondary-font-weight-REGULAR: regular;
 
+    $line-height:1.5;
+
 //----------------------------------------------
 
+// ****************************
 // ******* MIXINS FONTS *******
+// ****************************
 @mixin primary-font-properties-LARGE (
     $family: $primary-font-family,
     $size: $primary-font-size-LARGE,
@@ -43,11 +47,13 @@
     $family: $primary-font-family,
     $size: $secondary-font-size-MEDIUM,
     $weight: $secondary-font-weight-REGULAR,
-    $color: $default-color-LIGHT,  
+    $color: $default-color-LIGHT,
+    $line-height: $line-height,  
     ){
     font: $size $weight;
     font-family: $family;
     color: $color;
+    line-height: $line-height;
     };
     
 @mixin default-title-properties (
@@ -76,7 +82,7 @@
     $family: $main-title-font-family,
     $size: $title-mobil-font-size,
     $weight: $secondary-font-weight-REGULAR,
-    $color: $default-color-LIGHT,  
+    $color: $primary-color-BRIGHT,  
     ){
     font: $size $weight;
     font-family: $family;
@@ -87,33 +93,17 @@
     $family: $main-title-font-family,
     $size: $title-desktop-font-size,
     $weight: $secondary-font-weight-REGULAR,
-    $color: $default-color-LIGHT,  
+    $color: $primary-color-BRIGHT,
+    $line-height: $line-height,  
     ){
     font: $size $weight;
     font-family: $family;
     color: $color;
+    line-height: $line-height;
     };
-    
-//----------------------------------------------
-
-// ******* EXTENDS PLACEHOLDER PROPERTIES *******
-// >>>>>> Lien balises A dans Header HORS Dropdown <<<<<<<<
-%links-properties{
-    &:link{
-        text-decoration: none;
-    }
-    &:visited{
-        display: none;
-    }
-    &:hover{
-        color: $primary-color-BRIGHT;
-    }
-    &:active{
-        color: $secondary-content-color-DARK;
-    }
-}
 // >>>>>> Lien balises A dans Header DANS Dropdown <<<<<<<<
-%box-links-properties{
+@mixin box-links-properties{
+    color: $default-color-LIGHT;
     &:link{
         text-decoration: none;
     }
@@ -128,7 +118,7 @@
     }
 }
 // >>>>>> Content balises LI dans Dropdown <<<<<<<<
-%box-properties{
+@mixin box-properties{
     color: $default-color-LIGHT;
     &:link{
         text-decoration: none;
@@ -145,4 +135,64 @@
     &:active{
         color: $secondary-content-color-DARK;
     }
+}
+// >>>>>> HERO Properties <<<<<<<<
+@mixin hero-properties{
+    display: flex;
+    width: 100% ;
+    height: 25vh;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+
+    // filtre noir HERO
+    &:before{
+        content: "";
+        position: absolute;
+        background: black;
+        opacity: 0.4;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+    }
+}
+//----------------------------------------------
+
+// **********************************************
+// ******* EXTENDS PLACEHOLDER PROPERTIES *******
+// **********************************************
+
+// >>>>>> Lien balises A dans Header HORS Dropdown <<<<<<<<
+%links-properties{
+    color: $default-color-LIGHT;
+    &:link{
+        text-decoration: none;
+    }
+    &:visited{
+        display: none;
+    }
+    &:hover{
+        color: $primary-color-BRIGHT;
+    }
+    &:active{
+        color: $secondary-content-color-DARK;
+    }
+
+}
+// >>>>>> Disposition de base <<<<<<<<
+%display-default{
+    display: flex;
+    justify-content: center;
+    margin: auto;
+}
+// >>>>>> Disposition titres Tops <<<<<<<<
+%display-tops-title{
+    background: $primary-content-color-BRIGHT;
+    font-size: $title-default-font-size;
+    font-family: $secondary-font-family;
+    min-height: 52px;
+    display: flex;
+    justify-content: center;
+    width: 100%;
 }

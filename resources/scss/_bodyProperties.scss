@@ -1,0 +1,59 @@
+body{
+    background: $secondary-content-color-DARK;  
+    #main_content{
+        @extend %display-default;
+        width: 90%;
+        justify-content: space-between;
+        padding: 1vmax;
+        @include primary-font-properties-MEDIUM;
+
+        .posts{
+            width: 74%;
+            .post_title_box_content{
+                background: $BG-color-card-title;
+                @include primary-font-properties-LARGE;
+                display: flex;
+                align-items: center;
+                width: 100%;
+                min-height: 52px;
+                padding-left: 0.5%;
+            }
+            .post_description_box_content{
+                background: $nuance-DARK;
+                margin-bottom: 1.15vh;
+                max-height: 25vh;
+                overflow: auto;
+                .post_figure_box_content{
+                    background: $primary-content-color-BRIGHT;
+                    width: 15%;
+                    height: 15%;
+                    margin-right: 0.6vmax;
+                    padding-bottom: 0.3vmin;
+                    figcaptation{
+                        padding: 1%;
+                    }
+                }
+                p{
+                    padding: 0.4vw;
+                }
+            }
+        }
+        .tops_right_side_box{
+            width: 25%;
+            .tops_title_box_content{
+                @extend %display-tops-title;
+            }   
+            .tops_box_content{
+                background: $nuance-DARK;
+                @include primary-font-properties-LARGE;
+                //align-items: center;
+                width: 100%;
+                min-height: 52px;
+                padding-left: 0.5%;
+            }
+            .top_artistes_content{
+                margin-bottom: 1.15vh;
+            }
+        }
+    }
+}

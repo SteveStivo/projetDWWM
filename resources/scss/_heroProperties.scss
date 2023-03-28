@@ -1,0 +1,43 @@
+// ****************************
+// ****** HERO Home Page ******
+// ****************************
+.home_page_content{
+    display: flex;
+    justify-content: center;
+    position: relative;
+    align-items: center;
+    height: 55vh;
+    .hero_title_home{
+        @include hero-properties;
+        height: 28em;
+        background: 
+        url(../../public/assets/hero_home.jpg) 100% / 100% 100vw no-repeat;
+    
+        h1{
+            //background: url(../../public/assets/logo_footer_928x246.png) 70% / 70% 20vw no-repeat;
+            position: relative;
+            height: 100%;
+            width: 100%;
+            opacity: 1;
+        }
+    }
+    .logo_home_page{
+        position: absolute;
+        width: 70vw;
+    }
+}
+
+// ****************************
+// ****** HERO Head Pages *****
+// ****************************
+
+// >>>>>>>> posts page <<<<<<<<
+.hero_title_posts{
+    @include hero-properties;
+    background: url(../../public/assets/hero_blog.jpg) 100% / 100% 50vw no-repeat;
+    background-size: cover;
+    h1{
+        @include desktop-header-properties;
+        position: relative;
+    }
+}
