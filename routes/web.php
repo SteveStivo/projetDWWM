@@ -15,22 +15,30 @@ use App\Http\Controllers\ProfileController;
 |
 */
 
-Route::get('/', function () {
-    return view('homePage');
-})->name('homePage');
+
+Route::view('/', 'layouts.homePage')->name('homePage');
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    return view('layouts.dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+Route::resource('posts', PostController::class);
 Route::get('/posts', [PostController::class, 'index'])->name('posts_list.index');
 
+Route::get('/posts/{id}', [PostController::class, 'show'])->name('posts_list.show');
+
 Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-    
-    //Route::get('/posts', [PostController::class, 'edit'])->name('posts.edit');
+    /* --->> concaténation route PROFILE <<--- */
+    Route::name('profile.')->group(function(){
+        Route::get('/profile', [ProfileController::class, 'edit'])->name('edit');
+        Route::patch('/profile', [ProfileController::class, 'update'])->name('update');
+        Route::delete('/profile', [ProfileController::class, 'destroy'])->name('destroy');   
+    });
+    /* --->> concaténation route POST_LIST <<--- */
+    Route::name('posts_list.')->group(function(){
+        Route::get('/posts/create', [PostController::class, 'create'])->name('create');
+        Route::post('/posts/create', [PostController::class, 'store'])->name('store');
+    });
 
 });
 

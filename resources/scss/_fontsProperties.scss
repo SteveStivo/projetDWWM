@@ -186,7 +186,7 @@
     justify-content: center;
     margin: auto;
 }
-// >>>>>> Disposition titres Tops <<<<<<<<
+// >>>>>> Disposition titres Tops Content <<<<<<<<
 %display-tops-title{
     background: $primary-content-color-BRIGHT;
     font-size: $title-default-font-size;
@@ -194,5 +194,6 @@
     min-height: 52px;
     display: flex;
     justify-content: center;
+    align-items: center;
     width: 100%;
 }

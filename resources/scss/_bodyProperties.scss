@@ -19,22 +19,30 @@ body{
                 padding-left: 0.5%;
             }
             .post_description_box_content{
+                display: flex;
                 background: $nuance-DARK;
                 margin-bottom: 1.15vh;
                 max-height: 25vh;
                 overflow: auto;
                 .post_figure_box_content{
                     background: $primary-content-color-BRIGHT;
-                    width: 15%;
-                    height: 15%;
+                    display: flex;
+                    flex-direction: column;
+                    width: 25%;
                     margin-right: 0.6vmax;
                     padding-bottom: 0.3vmin;
+                    .post_img_box_content{
+                        height: 10em;
+                    }
                     figcaptation{
                         padding: 1%;
+                        height: auto;
                     }
                 }
                 p{
                     padding: 0.4vw;
+                    width: 75%;
+                    overflow: auto;
                 }
             }
         }
@@ -53,6 +61,38 @@ body{
             }
             .top_artistes_content{
                 margin-bottom: 1.15vh;
+            }
+            .top_musics_content{
+                margin-bottom: 1.15vh;
+            }
+            .event_content{
+                background: $nuance-DARK;
+                .event_title_box_content{
+                    @include primary-title-properties
+                }
+                .event_figcaption_box_content{
+                    display: flex;
+                    justify-content: space-between;
+                    margin: auto;
+                    min-height: 52px;
+                    figcaptation{
+                        background: $primary-content-color-BRIGHT;
+                        @extend %display-default;
+                        margin: 0;
+                        align-items: center;
+                        width: 30%;
+                    }
+                    .event_lieu_box_content{
+                        width: 69%;
+                    }
+                }
+            }
+
+            p{
+                width: 90%;
+                margin: 3% auto;
+                max-height: 11vh;
+                overflow: auto;
             }
         }
     }

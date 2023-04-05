@@ -1,3 +1,6 @@
+// *************************************
+// *****>>>> NAV HOME NO Login <<<<******
+// *************************************
 // ------ LOGO ------
 .navbar-brand{
     display: flex;
@@ -127,4 +130,18 @@
         width: 10%;
         @extend %links-properties;
     }
+}
+
+// *************************************
+// *****>>>> NAV DASHBOARD Login ok <<<<******
+// *************************************
+// ------ LOGO ------
+.logo-nav-authOk{
+    @extend %display-default;
+    width: 6vw;
+    //margin-right: 1%;
+    align-items: center;
+        max-width: 100%;
+        margin: 1vh;
+
 }

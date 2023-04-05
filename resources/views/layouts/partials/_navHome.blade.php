@@ -1,17 +1,10 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script src="https://cdn.tailwindcss.com"></script>
+@include('layouts.partials._header')
 
-    <title>Laravel</title>
-
-    <!-- Styles CSS -->
-    <link rel="stylesheet" href="../resources/scss/app.css">
+        <!-- Scripts -->
+        @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body class="antialiased">
-    
+    <h1>HOOOOOOOOME</h1>
     <!-- NAV BAR CONTENT -->
     <div class="navbar-brand">
         @if (Route::has('login'))
@@ -77,8 +70,5 @@
 @yield('hero')
 @yield('content')
 
-    <footer>
-
-    </footer>
 </body>
 </html>

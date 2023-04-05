@@ -1,4 +1,4 @@
-@extends('header')
+@extends('layouts.partials._navHome')
 
 @section('hero')
 <div class="home_page_content">

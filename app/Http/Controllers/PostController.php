@@ -6,40 +6,51 @@ use App\Models\Post;
 use App\Http\Requests\StorePostRequest;
 use App\Http\Requests\UpdatePostRequest;
 
+use function PHPUnit\Framework\returnSelf;
+
 class PostController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Vue de tous les articles daqns l'ordre.
      */
     public function index()
     {
-        $posts = Post::all();
+        $posts = Post::with('user')->latest()->get();
 
         return view('posts_list.indexPosts_list', compact('posts'));
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Vue pour créer un article.
      */
     public function create()
     {
-        //
+        return view('posts_list.edit');
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Enregistrement de l'article
      */
     public function store(StorePostRequest $request)
-    {
-        //
+    {   
+        $imageLink = $request->image->store('posts');
+
+        Post::create([
+            'post_title' => $request->title,
+            'post_author' => $request->author,
+            'post_description' => $request->content,
+            'post_img' => $imageLink,
+            'user_id' => $request->user
+        ]);
+        return redirect()->route('dashboard')->with('success','Article créé');
     }
 
     /**
-     * Display the specified resource.
+     * Montrer.
      */
     public function show(Post $post)
     {
-        //
+        return view('posts_list.one-post', compact('post'));
     }
 
     /**
