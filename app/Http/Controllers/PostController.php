@@ -11,7 +11,7 @@ use function PHPUnit\Framework\returnSelf;
 class PostController extends Controller
 {
     /**
-     * Vue de tous les articles daqns l'ordre.
+     * Vue de tous les articles dans l'ordre.
      */
     public function index()
     {
@@ -25,28 +25,33 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('posts_list.edit');
+        return view('posts_list.partials.create-post-form');
     }
 
     /**
-     * Enregistrement de l'article
+     * Enregistrement de l'article dans la base de données
      */
     public function store(StorePostRequest $request)
     {   
-        $imageLink = $request->image->store('posts');
-
+        if (isset($request->image)) {
+            /* enregistre l'image dans le dossier storage/app/public/posts et pour qu'il ne soit pas modifiable par un utilisatur on crée un link dans public/storage/posts grâce à la commande php artisan LINK >>>>> cela crée un lien url crypté dans la base de donnée pour les retrouver ensuite <<<<<< */
+            $imageLink = $request->image->store('posts');
+    } else {
+            $imageLink = null;
+    };
         Post::create([
             'post_title' => $request->title,
-            'post_author' => $request->author,
             'post_description' => $request->content,
             'post_img' => $imageLink,
+            /* la valeur de user_id (donc l'ID de l'utilisateur authentifié) est associé par le MODEL Post en récupérant le $post->user()->associate(auth()->user()->id) dans la class Post */
             'user_id' => $request->user
         ]);
-        return redirect()->route('dashboard')->with('success','Article créé');
+
+        return redirect()->route('dashboard')->with('success','Votre article a bien été créé');
     }
 
     /**
-     * Montrer.
+     * Montrer un seul article.
      */
     public function show(Post $post)
     {
@@ -56,9 +61,10 @@ class PostController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
+  
     public function edit(Post $post)
     {
-        
+        return view('posts_list.edit', compact('post'));
     }
 
     /**

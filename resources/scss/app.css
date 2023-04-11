@@ -250,7 +250,6 @@ body #main_content .posts .post_description_box_content .post_figure_box_content
 }
 body #main_content .posts .post_description_box_content p {
   padding: 0.4vw;
-  width: 75%;
   overflow: auto;
 }
 body #main_content .tops_right_side_box {

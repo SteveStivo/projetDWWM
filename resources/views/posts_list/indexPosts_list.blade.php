@@ -18,11 +18,17 @@
         </div>
         <div class="post_description_box_content">
             <figure class="post_figure_box_content">
+                @if (isset($post->post_img))
                 <img class="post_img_box_content" src="{{ asset('/storage/' . $post->post_img) }}" alt="">
+                @else
+                <img class="post_img_box_content" src="http://localhost/projetDWWM/public/storage/posts/default_img.JPG" alt="">                    
+                @endif
                 <figcaptation>{{ $post->user->name }} <br> {{ $post->created_at->format('d M Y') }}</figcaptation>
-                <<a href="{{ route('posts_list.show', $post) }}">Lire plus</a>
             </figure>
-            <p>{{ $post->post_description }}</p>     
+            <div class="flex-col w-3/4 items-end">
+                <p>{{ Str::limit($post->post_description, 600) }}</p>     
+                <a class="flex justify-end items-end px-3" href="{{ route('posts_list.show', $post) }}">Lire la suite</a>
+            </div>
         </div>
         @endforeach
     

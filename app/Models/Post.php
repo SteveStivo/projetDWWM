@@ -13,7 +13,6 @@ class Post extends Model
     protected $fillable =[
         'post_title',
         'post_description',
-        'post_author',
         'post_img',
         'user_id'
     ];
@@ -22,6 +21,7 @@ class Post extends Model
     {
         parent::boot();
         self::creating(function ($post){
+            /* récupère l'ID authentifié et l'associe à user() dans $post */
             $post->user()->associate(auth()->user()->id);
         });
     }

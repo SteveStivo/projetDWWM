@@ -117,7 +117,7 @@
         color: $secondary-content-color-DARK;
     }
 }
-// >>>>>> Content balises LI dans Dropdown <<<<<<<<
+// >>>>>> Content balises LI HORS Dropdown <<<<<<<<
 @mixin box-properties{
     color: $default-color-LIGHT;
     &:link{

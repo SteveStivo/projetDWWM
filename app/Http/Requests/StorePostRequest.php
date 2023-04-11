@@ -7,11 +7,11 @@ use Illuminate\Foundation\Http\FormRequest;
 class StorePostRequest extends FormRequest
 {
     /**
-     * Determine if the user is authorized to make this request.
+     * Determine si le User est autorisé à faire la request.
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,8 +24,8 @@ class StorePostRequest extends FormRequest
         return [
             'title' => 'required',
             'content' => 'required',
-            'author' => 'required',
-            'image' => 'nullable|image'
+            /* ====>>>>>> attention réévalution du upload_max_filesize à 8M dans le php.ini car sinon message erreur LE FICHIER IMAGE n'A PU etre TELEVERSE <<<<<<<==== */
+            'image' => 'nullable|image|max:7000'
         ];
     }
 }
