@@ -50,7 +50,6 @@
   <x-slot:listPart> 
         <section>
           @if (!isset($post))
-
         
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
               <div class="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg">
@@ -64,9 +63,6 @@
                         {{ __('Edit or delet post') }}
                       </p>
                     </header>
-                    <div>
-                      <x-input-error />
-                    </div>
 
                   </section>
                 </div>
