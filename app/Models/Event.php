@@ -14,7 +14,6 @@ class Event extends Model
         'event_title',
         'event_description',
         'event_img',
-        'event_date',
         'event_place',
         'event_date_start',
         'event_date_end',
@@ -27,9 +26,9 @@ class Event extends Model
     public static function boot()
     {
         parent::boot();
-        self::creating(function ($post){
-            /* récupère l'ID authentifié et l'associe à user() dans $post */
-            $post->user()->associate(auth()->user()->id);
+        self::creating(function ($event){
+            /* récupère l'ID authentifié et l'associe à user() dans $event */
+            $event->user()->associate(auth()->user()->id);
         });
     }
     

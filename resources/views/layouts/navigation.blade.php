@@ -24,6 +24,9 @@
                     <x-nav-link :href="route('posts_list.create')" :active="request()->routeIs('posts_list.create')">
                         {{ __('Posts') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('events_list.create')" :active="request()->routeIs('events_list.create')">
+                      {{ __('Events') }}
+                  </x-nav-link>
                 </div>
             </div>
 

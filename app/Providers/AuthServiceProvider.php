@@ -4,8 +4,9 @@ namespace App\Providers;
 
 use App\Models\Post;
 use App\Models\User;
-use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
+use App\Models\Event;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -23,17 +24,21 @@ class AuthServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        // --------->>>>>>>> POSTS <<<<<<<<<---------
         //application des restrictions en application des règles d'autorisations
         $this->registerPolicies();
+        
         // définiton de qui a le droit en fonction de la méthode utilisée réponse en BOOLEEN
-        Gate::define('destroy-post', function (User $user, Post $post)
+        Gate::define('MAJ-post', function (User $user, Post $post)
         {
             return $user->id == $post->user_id;
         });
+
+        // -------->>>>>>>> EVENTS <<<<<<<<<--------
         // définiton de qui a le droit en fonction de la méthode utilisée réponse en BOOLEEN
-        Gate::define('update-post', function (User $user, Post $post)
+        Gate::define('MAJ-event', function (User $user, Event $event)
         {
-            return $user->id == $post->user_id;
+            return $user->id == $event->user_id;
         });
     }
 }

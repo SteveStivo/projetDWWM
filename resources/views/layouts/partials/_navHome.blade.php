@@ -4,7 +4,7 @@
         @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body class="antialiased">
-    <h1>HOOOOOOOOME</h1>
+
     <!-- NAV BAR CONTENT -->
     <div class="navbar-brand">
         @if (Route::has('login'))
@@ -19,7 +19,7 @@
                     <li class="nav-item"><a class="nav-link" href="{{ route('homePage') }}">Accueil</a></li>
                     <li class="nav-item dropdown">Actualités
                         <ul class="dropdown-menu">
-                            <li class="dropdown-item"><a class="dropdown-link" href="#">Evènements</a></li>
+                            <li class="dropdown-item"><a class="dropdown-link" href="{{ route('events_list.index') }}">{{ __('Events') }}</a></li>
                             <li  class="dropdown-item"><a class="dropdown-link" href="{{ route('posts_list.index') }}">{{ __('Posts') }}</a></li>
                         </ul>
                     </li>

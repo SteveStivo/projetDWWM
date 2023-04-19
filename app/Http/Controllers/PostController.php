@@ -6,8 +6,7 @@ use App\Models\Post;
 use Illuminate\Support\Facades\Gate;
 use App\Http\Requests\StorePostRequest;
 use App\Http\Requests\UpdatePostRequest;
-
-use function PHPUnit\Framework\returnSelf;
+use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
@@ -40,12 +39,12 @@ class PostController extends Controller
      */
     public function store(StorePostRequest $request)
     {   
-        if (isset($request->image)) {
-            /* enregistre l'image dans le dossier storage/app/public/posts et pour qu'il ne soit pas modifiable par un utilisatur on crée un link dans public/storage/posts grâce à la commande php artisan LINK >>>>> cela crée un lien url crypté dans la base de donnée pour les retrouver ensuite <<<<<< */
+      if (isset($request->image)) {
+            /* enregistre l'image dans le dossier storage/app/public/posts et pour qu'il ne soit pas modifiable par un utilisatur on crée ABSOLUMENT un link dans public/storage/posts grâce à la commande php artisan LINK >>>>> cela crée un lien url crypté dans la base de donnée pour les retrouver ensuite <<<<<< */
             $imageLink = $request->image->store('posts');
-    } else {
+      } else {
             $imageLink = null;
-    };
+      };
         Post::create([
             'post_title' => $request->title,
             'post_description' => $request->content,
@@ -71,11 +70,11 @@ class PostController extends Controller
   
     public function edit(Post $post)
     {
-    /* on vérifie que l'utilisateur est bien le propriétaire de l'article */
-    if (Gate::denies('update-post', $post)) {
+      /* on vérifie que l'utilisateur est bien le propriétaire de l'article celle-co est défini dans AuthServiceProvider */
+      if (Gate::denies('MAJ-post', $post)) {
         abort(403,__("You don't have permission to perform this action !"));
-    }
-        return view('posts_list.partials.edit-one-post', compact('post'));
+      }
+      return view('posts_list.partials.edit-one-post', compact('post'));
     }
 
     /**
@@ -98,8 +97,8 @@ class PostController extends Controller
                 'post_img' => $imageLink
             ]);
         }
-        /* on vérifie que l'utilisateur est bien le propriétaire de l'article */
-        if (Gate::denies('update-post', $post)) {
+        /* on vérifie que l'utilisateur est bien le propriétaire de l'article celle-co est défini dans AuthServiceProvider */
+        if (Gate::denies('MAJ-post', $post)) {
             abort(403,__("You don't have permission to perform this action !"));
         }
         /* On met à jour l'ensemble de l'article existant au travers du tableau $arrayUpdate */
@@ -113,11 +112,12 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-        if (Gate::denies('destroy-post', $post)) {
+        /* on vérifie que l'utilisateur est bien le propriétaire de l'article celle-co est défini dans AuthServiceProvider */
+        if (Gate::denies('MAJ-post', $post)) {
             abort(403,__("You don't have permission to perform this action !"));
         }
+        Storage::delete($post->post_img);
         $post->delete();
-
         return redirect()->route('posts_list.create')->with('success','Votre article a bien été supprimé');
 ;    }
 }

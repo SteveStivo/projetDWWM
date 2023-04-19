@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\EventController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Database\PDO\PostgresDriver;
 
@@ -32,7 +33,7 @@ Route::middleware('auth')->group(function () {
     Route::name('events_list.')->group(function(){
         Route::get('/events/create', [EventController::class, 'create'])->name('create');
         Route::post('/events/create', [EventController::class, 'store'])->name('store');
-        Route::get('/events/list', [DashEventController::class, 'index'])->name('edit');
+        Route::get('/events/list', [EventController::class, 'index'])->name('index');
         Route::get('/events/{event}/edit', [EventController::class, 'edit'])->name('editEvent');
         Route::put('/events/{event}', [EventController::class, 'update'])->name('update');
         Route::delete('/events/{event}', [EventController::class, 'destroy'])->name('delete');
