@@ -5,6 +5,22 @@
   </h2>
   </x-slot>
   <x-slot:createPart>
+
+
+    <div class="alert_content_properties">
+      <div class="alert_text_properties">
+        Votre évènement a bien été modifié
+      </div>
+    </div>
+
+
+    @if (session('success'))
+    <div class="alert_content_properties">
+      <div class="alert_text_properties">
+      {{ session('success') }}
+      </div>
+    </div>
+    @endif
   <div class="py-12">
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
       <div class="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg">
@@ -24,43 +40,51 @@
             
             <form method="post" action="{{ route('events_list.store') }}" enctype="multipart/form-data"
             class="mt-6 space-y-6">
-              @csrf
-              <div>
-                <x-input-label for="title" :value="__('Title')" />
-                <x-text-input id="title" name="title" />
-              </div>
-              <div>
-                <x-input-label for="date_start" :value="__('Start')" />
-                <x-text-input id="date_start" name="date_start" type="datetime-local" />
-              </div>
-              <div>
-                <x-input-label for="date_end" :value="__('End')" />
-                <x-text-input id="date_end" name="date_end" type="datetime-local" />
-              </div>
-              <div>
-                <x-input-label for="place" :value="__('Place')" />
-                <x-text-input id="place" name="place" />
-              </div>
-              <div>
-                <x-input-label for="map" :value="__('Map')" />
-                <x-text-input id="map" name="map" />
-              </div>
-              <div>
-                <x-input-label for="price" :value="__('Price')" />
-                <x-text-input id="price" name="price" />
-              </div>
-              <div>
-                <x-input-label for="description" :value="__('Description')" />
-                <textarea name="description" id="description" cols="60" rows="5"></textarea>
-              </div>
-              <div>
-                <x-input-label for="image" :value="__('Image')" />
-                <x-text-input id="image" name="image" type="file" />
-              </div>
-              <div class="flex items-center gap-4">
-                <x-primary-button>{{ __('Save') }}</x-primary-button>
-              </div>
-            </form>
+            @csrf
+            <div>
+              <x-input-label for="title" :value="__('Title')" />
+              <x-text-input value="{{ old('title') }}" id="title" name="title" />
+            </div>
+            <div>
+              <x-input-label for="date_start" :value="__('Start')" />
+              <x-text-input value="{{ old('date_start') }}" id="date_start" name="date_start" type="datetime-local" />
+            </div>
+            <div>
+              <x-input-label for="date_end" :value="__('End')" />
+              <x-text-input value="{{ old('date_end') }}" id="date_end" name="date_end" type="datetime-local" />
+            </div>
+            <div>
+              <x-input-label for="place" :value="__('Place')" />
+              <x-text-input value="{{ old('place') }}" id="place" name="place" />
+            </div>
+            <div>
+              <x-input-label for="location" :value="__('Country town')" />
+              <x-text-input value="{{ old('location') }}" id="location" name="location" />
+            </div>
+            <div>
+              <x-input-label for="map" :value="__('Map')" />
+              <x-text-input value="{{ old('map') }}" id="map" name="map" />
+            </div>
+            <div>
+              <x-input-label class="before:hidden" for="price" :value="__('Price')" />
+              <x-text-input value="{{ old('price') }}" id="price" name="price" />
+            </div>
+            <div>
+              <x-input-label for="description" :value="__('Description')" />
+              <textarea class="border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-sm shadow-sm shadow-gray-400" name="description" id="description" cols="60" rows="5"></textarea>
+            </div>
+            <div>
+              <x-input-label class="before:hidden" for="image" :value="__('Image')" />
+              <x-text-input id="image" name="image" type="file" />
+            </div>
+            <div>
+              <x-input-label class="before:hidden" for="video_link" :value="__('Video link')" />
+              <x-text-input value="{{ old('video_link') }}" id="video_link" name="video_link" type="url" />
+            </div>
+            <div class="flex items-center gap-4">
+              <x-primary-button>{{ __('Save') }}</x-primary-button>
+            </div>
+          </form>
           </section>
         </div>
       </div>

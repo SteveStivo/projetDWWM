@@ -21,13 +21,13 @@
         @if (isset($event->event_img))
         <img class="post_img_box_content" src="{{ asset('/storage/' . $event->event_img) }}" alt="">
         @else
-        <img class="post_img_box_content" src="http://localhost/projetDWWM/public/storage/events/default_img.JPG" alt="">                    
+        <img class="post_img_box_content" src="http://localhost/projetDWWM/public/storage/events/default_event.png
+        " alt="">                    
         @endif
         <figcaptation>
-          {{ $event->user->name }} <br> 
-          <time>
-            {{ \Carbon\Carbon::parse($event->event_date_start)->translatedFormat('j F Y') }}
-          </time>
+          <time>{{ \Carbon\Carbon::parse($event->event_date_start)->translatedFormat('j/m/Y') }}</time>
+          <h3>{{ $event->event_place }}</h3> <br>
+          <h3>{{ $event->event_location }}</h3>
         </figcaptation>
       </figure>
       <div class="flex-col w-3/4 items-end">

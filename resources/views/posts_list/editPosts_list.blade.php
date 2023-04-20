@@ -30,12 +30,12 @@
                 <x-text-input id="title" name="title" />
               </div>
               <div>
-                <x-input-label for="image" :value="__('Image')" />
-                <x-text-input id="image" name="image" type="file" />
+                <x-input-label for="content" :value="__('Content')" />
+                <textarea class="border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-sm shadow-sm shadow-gray-400"  name="content" id="content" cols="60" rows="5"></textarea>
               </div>
               <div>
-                <x-input-label for="content" :value="__('Content')" />
-                <textarea name="content" id="content" cols="60" rows="5"></textarea>
+                <x-input-label class="before:hidden" for="image" :value="__('Image')" />
+                <x-text-input id="image" name="image" type="file" />
               </div>
               <div class="flex items-center gap-4">
                 <x-primary-button>{{ __('Save') }}</x-primary-button>

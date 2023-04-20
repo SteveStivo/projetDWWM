@@ -1,5 +1,4 @@
 <x-app-layout>
-    //onglet tableau de bord
     <x-slot:header>
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
             {{ __('Dashboard') }}
@@ -11,9 +10,9 @@
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                 @if (session('success'))
-                    {{ session('success') }}
+                  {{ session('success') }}
                 @else 
-                {{ __("You're logged in!") }}
+                  {{ __("You're logged in!") }}
                 @endif
                 </div>
             </div>

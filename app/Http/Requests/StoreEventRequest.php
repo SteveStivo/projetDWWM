@@ -21,11 +21,13 @@ class StoreEventRequest extends FormRequest
      */
     public function rules(): array
     {
+        // retourne les noms des champs et leur régles de validation dans la variable $errors
         return [
           'title' => 'required',
           /* ====>>>>>> attention réévalution du upload_max_filesize à 8M dans le php.ini car sinon message erreur LE FICHIER IMAGE n'A PU etre TELEVERSE <<<<<<<==== */
           'image' => 'nullable|image|max:7000',
           'place' => 'required',
+          'location' => 'required',
           'description' => 'required',
           'date_start' => 'date|required',
           'date_end' => 'date|required',

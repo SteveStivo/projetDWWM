@@ -7,7 +7,7 @@ use Illuminate\Foundation\Http\FormRequest;
 class UpdatePostRequest extends FormRequest
 {
     /**
-     * Determine if the user is authorized to make this request.
+     * Determine si le User est autorisé à faire la request.
      */
     public function authorize(): bool
     {
@@ -15,12 +15,13 @@ class UpdatePostRequest extends FormRequest
     }
 
     /**
-     * Get the validation rules that apply to the request.
+     * 
      *
      * @return array<string, \Illuminate\Contracts\Validation\Rule|array|string>
      */
     public function rules(): array
     {
+        // retourne les noms des champs et leur régles de validation dans la variable $errors
         return [
             'title' => 'required',
             'content' => 'required',

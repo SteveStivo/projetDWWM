@@ -53,6 +53,7 @@ class EventController extends Controller
       'event_title' => $request->title,
       'event_img' => $imageLink,
       'event_place' => $request->place,
+      'event_location' => $request->location,
       'event_description' => $request->description,
       'event_date_start' => $request->date_start,
       'event_date_end' => $request->date_end,
@@ -69,7 +70,7 @@ class EventController extends Controller
       $minute=12
     );
 
-    return redirect()->route('events_list.create')->with('success','Votre article a bien été créé');
+    return redirect()->route('events_list.create')->with('success','Votre évènement a bien été créé');
     
     }
 
@@ -94,11 +95,40 @@ class EventController extends Controller
     }
 
     /**
-     * Update de l'article en cours de modification.
+     * Update de l'évènement en cours de modification.
      */
     public function update(UpdateEventRequest $request, Event $event)
     {
-        //
+        /* création d'un tableau pour changer le contenu des colonnes dans la BDD et vérifier aussi si l'image est mise à jour ou non */
+        $arrayUpdate = [
+          'event_title' => $request->title,
+          'event_place' => $request->place,
+          'event_location' => $request->location,
+          'event_description' => $request->description,
+          'event_date_start' => $request->date_start,
+          'event_date_end' => $request->date_end,
+          'event_price' => $request->price,
+          'event_map' => $request->map,
+          'event_video_link' => $request->video_link,
+      ];
+
+      if ($request->image != null) {
+          
+          /* récupère l'image s'il y en a une et l'enregistre dans le dossier storage/app/public/posts*/
+          $imageLink = $request->image->store('events');
+          /* va fusionner le tableau $arrayUpdate en rajoutant la clé/valeur "image"   */
+          $arrayUpdate = array_merge($arrayUpdate, [
+              'event_img' => $imageLink
+          ]);
+      }
+      /* on vérifie que l'utilisateur est bien le propriétaire de l'article celle-co est défini dans AuthServiceProvider */
+      if (Gate::denies('MAJ-event', $event)) {
+          abort(403,__("You don't have permission to perform this action !"));
+      }
+      /* On met à jour l'ensemble de l'article existant au travers du tableau $arrayUpdate */
+      $event->update($arrayUpdate);
+
+      return redirect()->route('events_list.create')->with('success','Votre évènement a bien été modifié');
     }
 
     /**

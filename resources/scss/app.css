@@ -305,6 +305,23 @@ footer {
   background-size: cover;
 }
 
+.alert_text_properties {
+  color: #fff;
+}
+.alert_text_properties:link {
+  text-decoration: none;
+}
+.alert_text_properties:visited {
+  display: none;
+}
+.alert_text_properties:hover {
+  background: #E83E20;
+  transition: background 1s cubic-bezier(0, 0.9, 0.44, 0.98);
+}
+.alert_text_properties:active {
+  color: #171E22;
+}
+
 .home_page_content {
   display: flex;
   justify-content: center;

@@ -12,7 +12,7 @@
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
                     <a href="{{ route('homePage') }}">
-                        <x-application-logo class="" />
+                        <x-application-logo src="{{ Vite::asset('../public/assets/logo_nav_124x107.png') }}" alt="logo" />
                     </a>
                 </div>
 
