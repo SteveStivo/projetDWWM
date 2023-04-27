@@ -1,7 +1,7 @@
 @props([
     'name',
     'show' => false,
-    'maxWidth' => '2xl'
+    'maxWidth' => '2xl',
 ])
 
 @php
@@ -18,12 +18,13 @@ $maxWidth = [
     x-data="{
         show: @js($show),
         focusables() {
-            // All focusable element types...
+            // Sélectionne tous les types d'éléments FOCUSABLE et les retourne
             let selector = 'a, button, input:not([type=\'hidden\']), textarea, select, details, [tabindex]:not([tabindex=\'-1\'])'
             return [...$el.querySelectorAll(selector)]
-                // All non-disabled elements...
+                // Filtre parmi les éléments sélectionnés ceux qui ne sont pas DISABLED
                 .filter(el => ! el.hasAttribute('disabled'))
         },
+        // FOCUS tous les éléments possible de la liste précédemment sélectionnés
         firstFocusable() { return this.focusables()[0] },
         lastFocusable() { return this.focusables().slice(-1)[0] },
         nextFocusable() { return this.focusables()[this.nextFocusableIndex()] || this.firstFocusable() },
@@ -31,7 +32,10 @@ $maxWidth = [
         nextFocusableIndex() { return (this.focusables().indexOf(document.activeElement) + 1) % (this.focusables().length + 1) },
         prevFocusableIndex() { return Math.max(0, this.focusables().indexOf(document.activeElement)) -1 },
     }"
+    // $watch ('show', value...) ne peut pas être modifié car il est défini ainsi dans la méthode Alpine.js
+    // ici la méthode sert uniquement à ajouter une classs tailwind pour bloquer le défilement quand la modal est ouverte
     x-init="$watch('show', value => {
+      // si la valeur de Show est 
         if (value) {
             document.body.classList.add('overflow-y-hidden');
             {{ $attributes->has('focusable') ? 'setTimeout(() => firstFocusable().focus(), 100)' : '' }}
@@ -39,6 +43,7 @@ $maxWidth = [
             document.body.classList.remove('overflow-y-hidden');
         }
     })"
+    
     x-on:open-modal.window="$event.detail == '{{ $name }}' ? show = true : null"
     x-on:close.stop="show = false"
     x-on:keydown.escape.window="show = false"

@@ -130,20 +130,23 @@
                     <x-input-label for="date_end" :value="__('End')" />
                     <time datetime="{{ $event->event_date_end }}">{{ \Carbon\Carbon::parse($event->event_date_end)->translatedFormat('l j F Y - H\hi') }}</time>
                   </div>
-                  <footer class="grid grid-cols-2">
+                  <footer class="footer_events grid grid-cols-2">
                     
-                    <!-- <x-danger-button x-data="" x-on:click.prevent="$dispatch('open-modal', 'confirm-post-deletion')">{{ __('Delete Account') }}</x-danger-button> -->
+                    {{-- <x-danger-button x-data="" x-on:click.prevent="$dispatch('open-modal', 'confirm-post-deletion')">{{ __('Delete Account') }}</x-danger-button> --}}
                     
-                    <!-- <x-modal name="confirm-post-deletion" :show="$errors->userDeletion->isNotEmpty()" focusable> -->
+                    {{-- <x-modal name="confirm-post-deletion" :show="$errors->userDeletion->isNotEmpty()" focusable> --}}
                       <form action="{{ route('events_list.delete', $event) }}" method="post">
                         @csrf
                         @method('delete')
+
+                        {{-- ATTENTION IL FAUT ABSOLUMENT METTRE LE COMPOSANT SUIVANT
+                        {{-- <x-button-link :ref="{{ route('events_list.editEvent', $event)}}">Mod</x-button-link> --}}
+                        xxxx************************************************** xxx--}}
                         <a href="{{ route('events_list.editEvent', $event)}}" class="bg-blue-500 p-3 m-1 shadow sm:rounded-lg">Modifier</a>
                         <x-danger-button type="submit" id="delete-post-form" >Supprimer</x-danger-button>
-                        <!-- <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">
+                        {{-- <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">
                           {{ __('Are you sure you want to delete your account?') }}
                         </h2>
-                        
                         <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
                           {{ __('Once your account is deleted, all of its resources and data will be permanently deleted. Please enter your password to confirm you would like to permanently delete your account.') }}
                         </p>
@@ -155,9 +158,9 @@
                           <x-danger-button class="ml-3">
                             {{ __('Delete Account') }}
                           </x-danger-button>
-                        </div> -->
+                        </div> --}}
                       </form>
-                      <!-- </x-modal> -->
+                    {{-- </x-modal> --}}
                   </footer>
                 </section>
               </div>

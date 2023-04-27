@@ -3,6 +3,9 @@
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
+<!-- ******************************************************
+************** NAVIGATION page principale ***************
+********************************************************* -->
 <body class="antialiased">
 
     <!-- NAV BAR CONTENT -->
@@ -10,7 +13,7 @@
         @if (Route::has('login'))
             <!-- NAV BAR LOGO -->
             <div class="logo-nav">
-                <a href="{{ route('homePage') }}"><img class="img-logo" src="..\public\assets\logo_nav_124x107.png" alt="logo"></a>
+                <a href="{{ route('homePage') }}"><img class="img-logo" src="{{ Vite::asset('public/assets/logo_nav_124x107.png')}}" alt="logo"></a>
             </div>
 
             <!-- NAV BAR LINK -->

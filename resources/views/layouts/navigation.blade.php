@@ -87,9 +87,12 @@
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('posts_list.index')" :active="request()->routeIs('posts.edit')">
+            <x-responsive-nav-link :href="route('posts_list.create')" :active="request()->routeIs('posts.edit')">
                 {{ __('Posts') }}
             </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('posts_list.create')" :active="request()->routeIs('events.edit')">
+              {{ __('Events') }}
+          </x-responsive-nav-link>
         </div>
 
         <!-- Responsive Settings Options -->

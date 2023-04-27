@@ -11,11 +11,12 @@
 
     <x-danger-button
         x-data=""
-        x-on:click.prevent="$dispatch('open-modal', 'confirm-user-deletion')"
+        x-on:click.prevent="$dispatch('open-modal', 'modal-delete-profile')"
     >{{ __('Delete Account') }}</x-danger-button>
 
-    <x-modal name="confirm-user-deletion" :show="$errors->userDeletion->isNotEmpty()" focusable>
-        <form method="post" action="{{ route('profile.destroy') }}" class="p-6">
+    <!-- isNotEmpty retourne TRUE si la collection n'est pas vide et FALSE si elle est vide du coup, la variable x-show dans la modal prend un BOOLEAN -->
+    <x-modal name="modal-delete-profile" :show="$errors->userDeletion->isNotEmpty()" focusable>
+      <form method="post" action="{{ route('profile.destroy') }}" class="p-6">
             @csrf
             @method('delete')
 

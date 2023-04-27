@@ -300,7 +300,7 @@ body #main_content .tops_right_side_box p {
   overflow: auto;
 }
 
-footer {
+#footer_main {
   background: url(../../public/assets/hero_blog.jpg) 100%/100% 50vw no-repeat;
   background-size: cover;
 }
@@ -386,4 +386,35 @@ footer {
   color: #E83E20;
   line-height: 1.5;
   position: relative;
+}
+
+.event_global_box {
+  flex-wrap: wrap;
+}
+
+.event_title_box_content {
+  background: #232D33;
+  font: calc(0.35rem + 0.85vw) bold;
+  font-family: "Lato", sans-serif;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  min-height: 52px;
+  padding-left: 0.5%;
+}
+
+.time_format {
+  font: calc(0.35rem + 1vw) regular;
+  font-family: "Lato", sans-serif;
+  color: #fff;
+  background: #E83E20;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 35%;
+}
+
+.place_location {
+  width: 65%;
 }/*# sourceMappingURL=app.css.map */

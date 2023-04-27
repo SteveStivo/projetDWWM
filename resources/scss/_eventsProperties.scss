@@ -1,0 +1,24 @@
+.event_global_box{
+  flex-wrap: wrap;
+}
+.event_title_box_content{
+  background: $nuance-DARK;
+  @include primary-font-properties-LARGE;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  min-height: 52px;
+  padding-left: 0.5%;
+}
+.time_format{
+  @include primary-title-properties;
+  background: $primary-color-BRIGHT;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 35%;
+
+}
+.place_location{
+  width: 65%;
+}
